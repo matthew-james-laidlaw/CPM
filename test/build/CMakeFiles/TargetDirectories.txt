@@ -1,0 +1,14 @@
+D:/Projects/generator-cmake/test/build/CMakeFiles/unit_tests.dir
+D:/Projects/generator-cmake/test/build/CMakeFiles/test.dir
+D:/Projects/generator-cmake/test/build/CMakeFiles/edit_cache.dir
+D:/Projects/generator-cmake/test/build/CMakeFiles/rebuild_cache.dir
+D:/Projects/generator-cmake/test/build/libs/CMakeFiles/test.dir
+D:/Projects/generator-cmake/test/build/libs/CMakeFiles/edit_cache.dir
+D:/Projects/generator-cmake/test/build/libs/CMakeFiles/rebuild_cache.dir
+D:/Projects/generator-cmake/test/build/apps/CMakeFiles/test.dir
+D:/Projects/generator-cmake/test/build/apps/CMakeFiles/edit_cache.dir
+D:/Projects/generator-cmake/test/build/apps/CMakeFiles/rebuild_cache.dir
+D:/Projects/generator-cmake/test/build/apps/myapp/CMakeFiles/myapp.dir
+D:/Projects/generator-cmake/test/build/apps/myapp/CMakeFiles/test.dir
+D:/Projects/generator-cmake/test/build/apps/myapp/CMakeFiles/edit_cache.dir
+D:/Projects/generator-cmake/test/build/apps/myapp/CMakeFiles/rebuild_cache.dir

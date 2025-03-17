@@ -1,0 +1,15 @@
+{
+    "name": "generator-cmake",
+    "version": "0.1.0",
+    "description": "A modern cmake project generator",
+    "type": "module",
+    "files": [
+        "app"
+    ],
+    "keywords": [
+        "yeoman-generator"
+    ],
+    "dependencies": {
+        "yeoman-generator": "^7.5.0"
+    }
+}

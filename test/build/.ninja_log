@@ -1,0 +1,11 @@
+# ninja log v6
+3	81	7639503115301003	CMakeFiles/unit_tests.dir/Debug/unit_tests_main.cpp.obj.ddi	10034e296dc96b11
+83	102	7639503116240444	CMakeFiles/unit_tests.dir/Debug/CXX.dd	634a91d5ca9bb29e
+83	102	7639503116240444	D:/Projects/generator-cmake/test/build/CMakeFiles/unit_tests.dir/Debug/CXXModules.json	634a91d5ca9bb29e
+83	102	7639503116240444	CMakeFiles/unit_tests.dir/Debug/unit_tests_main.cpp.obj.modmap	634a91d5ca9bb29e
+12	118	7639503115386612	apps/myapp/CMakeFiles/myapp.dir/Debug/main.cpp.obj.ddi	b2727d86cf277de5
+120	138	7639503116605610	apps/myapp/CMakeFiles/myapp.dir/Debug/CXX.dd	d7151510cce78d0a
+120	138	7639503116605610	D:/Projects/generator-cmake/test/build/apps/myapp/CMakeFiles/myapp.dir/Debug/CXXModules.json	d7151510cce78d0a
+120	138	7639503116605610	apps/myapp/CMakeFiles/myapp.dir/Debug/main.cpp.obj.modmap	d7151510cce78d0a
+104	146	7639503116300797	CMakeFiles/unit_tests.dir/Debug/unit_tests_main.cpp.obj	b0b0855238332e8d
+140	481	7639503116671010	apps/myapp/CMakeFiles/myapp.dir/Debug/main.cpp.obj	edcd93902c5bbf81

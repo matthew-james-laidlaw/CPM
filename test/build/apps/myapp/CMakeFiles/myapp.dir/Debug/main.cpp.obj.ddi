@@ -1,0 +1,9 @@
+{
+  "revision": 0,
+  "rules": [
+    {
+      "primary-output": "apps\\myapp\\CMakeFiles\\myapp.dir\\Debug\\main.cpp.obj"
+    }
+  ],
+  "version": 1
+}
