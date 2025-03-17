@@ -6,10 +6,12 @@ export default class extends Generator {
 
         const projectName = 'MYPROJECT';
 
-        const appsDirectory = 'apps';
+        const appsDir = 'apps';
         const appTemplate = 'app';
 
-        const libsDirectory = 'libs';
+        const externDir = 'extern';
+
+        const libsDir = 'libs';
 
         const appName = 'myapp';
 
@@ -25,27 +27,35 @@ export default class extends Generator {
         );
 
         this.fs.copyTpl(
-            this.templatePath(`${appsDirectory}/CMakeLists.txt`),
-            this.destinationPath(`${appsDirectory}/CMakeLists.txt`),
+            this.templatePath(`${appsDir}/CMakeLists.txt`),
+            this.destinationPath(`${appsDir}/CMakeLists.txt`),
             { appName: appName }
         );
 
         this.fs.copyTpl(
-            this.templatePath(`${appsDirectory}/${appTemplate}/CMakeLists.txt`),
-            this.destinationPath(`${appsDirectory}/${appName}/CMakeLists.txt`),
+            this.templatePath(`${appsDir}/${appTemplate}/CMakeLists.txt`),
+            this.destinationPath(`${appsDir}/${appName}/CMakeLists.txt`),
             { appName: appName }
         );
 
         this.fs.copyTpl(
-            this.templatePath(`${appsDirectory}/${appTemplate}/main.cpp`),
-            this.destinationPath(`${appsDirectory}/${appName}/main.cpp`),
+            this.templatePath(`${appsDir}/${appTemplate}/main.cpp`),
+            this.destinationPath(`${appsDir}/${appName}/main.cpp`),
             { appName: appName }
         );
 
         this.fs.copyTpl(
-            this.templatePath(`${libsDirectory}/CMakeLists.txt`),
-            this.destinationPath(`${libsDirectory}/CMakeLists.txt`)
+            this.templatePath(`${externDir}/CMakeLists.txt`),
+            this.destinationPath(`${externDir}/CMakeLists.txt`)
         )
+
+        this.fs.copyTpl(
+            this.templatePath(`${libsDir}/CMakeLists.txt`),
+            this.destinationPath(`${libsDir}/CMakeLists.txt`)
+        )
+
+        this.spawnSync('git', ['init']);
+        this.spawnSync('git', ['submodule', 'add', 'https://github.com/google/googletest.git', 'extern/googletest']);
 
     }
 

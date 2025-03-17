@@ -35,7 +35,7 @@ endfunction()
 
 # )
 
-# add_subdirectory(extern)
+add_subdirectory(extern)
 
 initialize_unit_tests()
 
