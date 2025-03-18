@@ -3,13 +3,17 @@
     "version": "0.1.0",
     "description": "A modern cmake project generator",
     "type": "module",
-    "files": [
-        "app"
-    ],
+    "main": "./bin/cpm.js",
+    "bin": {
+        "cpm": "./bin/cpm.js"
+    },
     "keywords": [
-        "yeoman-generator"
+        "yeoman-generator",
+        "cpm",
+        "cmake"
     ],
     "dependencies": {
+        "commander": "^13.1.0",
         "yeoman-generator": "^7.5.0"
     }
 }

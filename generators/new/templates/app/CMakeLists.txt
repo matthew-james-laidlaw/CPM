@@ -4,7 +4,7 @@ set(<%= appName %>_SOURCES
 )
 
 # add additional link targets here
-set(<%= appName %>_LIBRARIES
+set($<%= appName %>_LIBRARIES
 
 )
 

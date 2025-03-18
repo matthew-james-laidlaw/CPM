@@ -31,9 +31,24 @@ function(yo_create_application target_name sources libraries)
     add_targets_to_bin(${target_name})
 endfunction()
 
-# function(yo_create_library target_name sources libraries
+function(yo_create_library target_name sources libraries)
+    add_library(${target_name})
 
-# )
+    target_sources(${target_name}
+        PUBLIC
+            FILE_SET cxx_modules
+            TYPE CXX_MODULES
+            FILES ${${sources}}
+    )
+
+    add_library(test_${target_name})
+    target_sources(test_${target_name} PUBLIC test_${target_name}.cpp)
+
+    target_link_libraries(test_${target_name} ${target_name} gtest)
+    target_link_libraries(unit_tests test_${target_name})
+
+    add_targets_to_bin(${target_name})
+endfunction()
 
 add_subdirectory(extern)
 

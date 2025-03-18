@@ -2,6 +2,6 @@
 
 auto main() -> int
 {
-    std::cout << "Hello, World!" << std::endl;
+    std::cout << "Hello, <%= appName %>!" << std::endl;
     return 0;
 }
