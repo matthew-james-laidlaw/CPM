@@ -29,13 +29,14 @@ export default class extends Generator {
 
     _initFileStructure() {
         const files = [
-            { from: '.gitignore',        to: '.gitignore'        },
-            { from: 'CMakeLists.txt',    to: 'CMakeLists.txt'    },
-            { from: 'CMakePresets.json', to: 'CMakePresets.json' },
+            { from: '.github',           to: '.github'           },
             { from: 'apps',              to: 'apps'              },
             { from: 'cmake',             to: 'cmake'             },
             { from: 'extern',            to: 'extern'            },
             { from: 'libs',              to: 'libs'              },
+            { from: '.gitignore',        to: '.gitignore'        },
+            { from: 'CMakeLists.txt',    to: 'CMakeLists.txt'    },
+            { from: 'CMakePresets.json', to: 'CMakePresets.json' },
         ];   
         this._applyTemplates(files);
     }
