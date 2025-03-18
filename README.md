@@ -13,3 +13,4 @@
   - Also, work out when to print stdout, and when to print stderr
 - Automate some integration tests that run various cpm commands and test the output
 - Package this via npm or osme other distribution method
+- Add support for conan or vcpkg
