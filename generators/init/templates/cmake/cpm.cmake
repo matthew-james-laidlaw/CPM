@@ -1,10 +1,13 @@
 function(cpm_install_targets)
-    foreach (target ${ARGN})
-        set_target_properties(${target} PROPERTIES
-            ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin/$<LOWER_CASE:$<CONFIG>>"
-            LIBRARY_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin/$<LOWER_CASE:$<CONFIG>>"
-            RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin/$<LOWER_CASE:$<CONFIG>>"
-        )
+    foreach(target IN LISTS ARGN)
+            set_target_properties(${target} PROPERTIES
+                ARCHIVE_OUTPUT_DIRECTORY_DEBUG ${PROJECT_BINARY_DIR}/bin/debug
+                LIBRARY_OUTPUT_DIRECTORY_DEBUG ${PROJECT_BINARY_DIR}/bin/debug
+                RUNTIME_OUTPUT_DIRECTORY_DEBUG ${PROJECT_BINARY_DIR}/bin/debug
+                ARCHIVE_OUTPUT_DIRECTORY_RELEASE ${PROJECT_BINARY_DIR}/bin/release
+                LIBRARY_OUTPUT_DIRECTORY_RELEASE ${PROJECT_BINARY_DIR}/bin/release
+                RUNTIME_OUTPUT_DIRECTORY_RELEASE ${PROJECT_BINARY_DIR}/bin/release
+            )
     endforeach()
 endfunction()
 

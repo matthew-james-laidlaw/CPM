@@ -21,7 +21,7 @@
         {
             "name": "release",
             "configurePreset": "default",
-            "configuration": "Debug"
+            "configuration": "Release"
         }
     ],
     "testPresets": [
@@ -41,7 +41,7 @@
             "name": "release",
             "inherits": "base",
             "configurePreset": "default",
-            "configuration": "Debug"
+            "configuration": "Release"
         }
     ],
     "workflowPresets": [
