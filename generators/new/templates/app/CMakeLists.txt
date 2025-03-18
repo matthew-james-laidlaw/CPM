@@ -4,8 +4,8 @@ set(<%= appName %>_SOURCES
 )
 
 # add additional link targets here
-set($<%= appName %>_LIBRARIES
+set(<%= appName %>_LIBRARIES
 
 )
 
-yo_create_application(<%= appName %> <%= appName %>_SOURCES <%= appName %>_LIBRARIES)
+cpm_create_app(<%= appName %> <%= appName %>_SOURCES <%= appName %>_LIBRARIES)

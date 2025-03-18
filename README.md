@@ -1,7 +1,8 @@
 # cpm
 ---
-- Utilizes [Yeoman](https://yeoman.io/) for creating the scaffolding for a C++ project based on CMake and C++20.
-- Utilizes [Commander](https://github.com/tj/commander.js) to wrap Yeoman commands in a friendlier command line interface for initializing, building, and testing C++ projects as well as adding new libraries and applications to a C++ project.
+- An opinionated C++ project manager. Defines a CMake-based infrastructure for building modern C++20 (and up) projects. Exposes an interface for initializing, building, and testing C++ projects as well as adding new libraries and applications to the project.
+- Utilizes [Yeoman](https://yeoman.io/) for defining the file structure.
+- Utilizes [Commander](https://github.com/tj/commander.js) to wrap Yeoman commands in a friendlier command line interface.
 
 ## TODO
 ---

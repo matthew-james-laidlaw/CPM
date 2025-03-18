@@ -49,7 +49,7 @@ export default class extends Generator {
 
         const files = [
             { from: 'lib/CMakeLists.txt',  to: `libs/${libName}/CMakeLists.txt`,      options: { libName: libName } },
-            { from: 'lib/module.ixx',      to: `libs/${libName}/module.ixx`,          options: { libName: libName } },
+            { from: 'lib/module.ixx',      to: `libs/${libName}/${libName}.ixx`,      options: { libName: libName } },
             { from: 'lib/test_module.cpp', to: `libs/${libName}/test_${libName}.cpp`, options: { libName: libName } },
         ];
         

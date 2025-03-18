@@ -1,11 +1,11 @@
 # add additional source files here
 set(<%= libName %>_SOURCES
-    module.ixx
+    <%= libName %>.ixx
 )
 
 # add additional link targets here
-set($<%= libName %>_LIBRARIES
+set(<%= libName %>_LIBRARIES
 
 )
 
-yo_create_library(<%= libName %> <%= libName %>_SOURCES <%= libName %>_LIBRARIES)
+cpm_create_lib(<%= libName %> <%= libName %>_SOURCES <%= libName %>_LIBRARIES)

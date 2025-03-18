@@ -23,21 +23,26 @@ export default class extends Generator {
     }
 
     writing() {
+        this._initFileStructure();
+        this._initGit();
+    }
 
+    _initFileStructure() {
         const files = [
             { from: '.gitignore',        to: '.gitignore'        },
             { from: 'CMakeLists.txt',    to: 'CMakeLists.txt'    },
             { from: 'CMakePresets.json', to: 'CMakePresets.json' },
-            { from : 'apps',             to: 'apps'              },
-            { from : 'extern',           to: 'extern'            },
-            { from : 'libs',             to: 'libs'              },
-        ];
-        
+            { from: 'apps',              to: 'apps'              },
+            { from: 'cmake',             to: 'cmake'             },
+            { from: 'extern',            to: 'extern'            },
+            { from: 'libs',              to: 'libs'              },
+        ];   
         this._applyTemplates(files);
+    }
 
+    _initGit() {
         this.spawnSync('git', ['init']);
         this.spawnSync('git', ['submodule', 'add', 'https://github.com/google/googletest.git', 'extern/googletest']);
-
     }
 
     _applyTemplates(files) {
