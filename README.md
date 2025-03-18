@@ -32,8 +32,6 @@ npm test --release
 - Add support for GitHub actions testing on various architectures, operating systems, and compilers
 - Add support for formatting, static analysis, and sanitizer builds
 - Add support for benchmarking
-- Make stdout print in realtime? (if possible)
-  - Also, work out when to print stdout, and when to print stderr
 - Automate some integration tests that run various cpm commands and test the output
 - Package this via npm or osme other distribution method
 - Add support for conan or vcpkg
