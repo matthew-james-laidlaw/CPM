@@ -43,37 +43,5 @@
             "configurePreset": "default",
             "configuration": "Release"
         }
-    ],
-    "workflowPresets": [
-        {
-            "name": "build-debug",
-            "steps": [
-                { "type": "configure", "name": "default" },
-                { "type": "build", "name": "debug" }
-            ]
-        },
-        {
-            "name": "test-debug",
-            "steps": [
-                { "type": "configure", "name": "default" },
-                { "type": "build", "name": "debug" },
-                { "type": "test", "name": "debug" }
-            ]
-        },
-        {
-            "name": "build-release",
-            "steps": [
-                { "type": "configure", "name": "default" },
-                { "type": "build", "name": "release" }
-            ]
-        },
-        {
-            "name": "test-release",
-            "steps": [
-                { "type": "configure", "name": "default" },
-                { "type": "build", "name": "release" },
-                { "type": "test", "name": "release" }
-            ]
-        }
     ]
 }

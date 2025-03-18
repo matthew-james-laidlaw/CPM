@@ -1,8 +1,18 @@
 #!/usr/bin/env node
 
-import { exec, spawn } from 'child_process';
+import { exec, spawnSync } from 'child_process';
 import { program } from 'commander';
 import path from 'path';
+
+function Run(command, args = []) {
+    const result = spawnSync(command, args, { stdio: 'inherit', shell: true });
+    if (result.error) {
+        process.exit(1);
+    }
+    if (result.status !== 0) {
+        process.exit(result.status);
+    }
+}
 
 program
     .command('init')
@@ -10,8 +20,7 @@ program
     .option('--name <projectName>', 'Specify a project name other than the current directory\'s name.')
     .action((options) => {
         const projectName = options.name || path.basename(process.cwd());
-        const child = spawn('yo', ['cmake:init', projectName], { stdio: 'inherit', shell: true });
-        child.on('exit', (code) => { process.exit(code); });
+        Run('yo', ['cmake:init', projectName]);
     });
 
 program
@@ -21,17 +30,9 @@ program
     .option('--lib <libName>', 'Generate a new library.')
     .action((options) => {
         if (options.app) {
-            const child = spawn('yo', ['cmake:new', '--app', options.app], {
-                stdio: 'inherit',
-                shell: true,
-            });
-            child.on('exit', (code) => process.exit(code));
+            Run('yo', ['cmake:new', '--app', options.app]);
         } else if (options.lib) {
-            const child = spawn('yo', ['cmake:new', '--lib', options.lib], {
-                stdio: 'inherit',
-                shell: true,
-            });
-            child.on('exit', (code) => process.exit(code));
+            Run('yo', ['cmake:new', '--lib', options.lib]);
         } else {
             console.error('Please specify either --app or --lib');
             process.exit(1);
@@ -44,9 +45,8 @@ program
     .description('Build the project.')
     .option('--release', 'Use release preset.')
     .action((options) => {
-        const preset = options.release ? 'build-release' : 'build-debug';
-        const child = spawn('cmake', ['--workflow', '--preset', preset], { stdio: 'inherit', shell: true });
-        child.on('exit', (code) => { process.exit(code); });
+        const preset = options.release ? 'release' : 'debug';
+        Run('cmake', ['--build', '--preset', preset]);
     });
 
 program
@@ -54,9 +54,9 @@ program
     .description('Test the project.')
     .option('--release', 'Use release preset.')
     .action((options) => {
-        const preset = options.release ? 'test-release' : 'test-debug';
-        const child = spawn('cmake', ['--workflow', '--preset', preset], { stdio: 'inherit', shell: true });
-        child.on('exit', (code) => { process.exit(code); });
+        const preset = options.release ? 'release' : 'debug';
+        Run('cmake', ['--build', '--preset', preset]);
+        Run('ctest', ['--preset', preset]);
     });
 
 program.parse(process.argv);

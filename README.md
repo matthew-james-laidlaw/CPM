@@ -33,6 +33,7 @@ npm test --release
 - Add support for formatting, static analysis, and sanitizer builds
 - Add support for benchmarking
 - Automate some integration tests that run various cpm commands and test the output
-- Package this via npm or osme other distribution method
+- Package this via npm or some other distribution method
 - Add support for conan or vcpkg
 - Add out-of-the-box support for IDE's like VSCode or Fleet
+- Allow CPM to download and store a registery of clang cross-compilers

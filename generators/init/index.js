@@ -24,7 +24,11 @@ export default class extends Generator {
 
     writing() {
         this._initFileStructure();
+    }
+    
+    install() {        
         this._initGit();
+        this._initCmake();
     }
 
     _initFileStructure() {
@@ -44,6 +48,10 @@ export default class extends Generator {
     _initGit() {
         this.spawnSync('git', ['init']);
         this.spawnSync('git', ['submodule', 'add', 'https://github.com/google/googletest.git', 'extern/googletest']);
+    }
+
+    _initCmake() {
+        this.spawnSync('cmake', ['--preset', 'default']);
     }
 
     _applyTemplates(files) {

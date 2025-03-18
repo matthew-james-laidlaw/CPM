@@ -1,48 +1,31 @@
-name: Build & Test
+name: CI
 
-on:
-    push:
-    pull_request:
-        branches: [ "main" ]
+on: [ push, workflow_dispatch ]
 
 jobs:
-    build-and-test:
-        name: ${{ matrix.arch }}
-        runs-on: ${{ matrix.os }}
+  build-and-test:
+    runs-on: ${{ matrix.os }}
 
-        strategy:
-          fail-fast: false
-          matrix:
-            include:
-              - os: ubuntu-24.04-arm
-                arch: arm64-linux
-              - os: macos-14
-                arch: arm64-mac
-              - os: ubuntu-24.04
-                arch: x64-linux
-              - os: macos-13
-                arch: x64-mac
-              - os: windows-2022
-                arch: x64-windows
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { name: arm64-apple-darwin, os: macos-latest   }
+          - { name: x64-linux-gnu,      os: ubuntu-latest  }
+          - { name: x64-windows-msvc,   os: windows-latest }
 
-        steps:
-            - name: Checkout source
-              uses: actions/checkout@v3
-              with:
-                submodules: 'recursive'
-                fetch-depth: 1
+    steps:
+    - name: Checkout source
+      uses: actions/checkout@v3
+      with:
+        submodules: 'recursive'
+        fetch-depth: 1
 
-            - name: Configure
-              shell: bash
-              run: |
-                cmake --preset default
+    - name: Configure
+      run: cmake --preset default
 
-            - name: Build
-              shell: bash
-              run: |
-                cmake --build --preset release
+    - name: Build
+      run: cmake --build --preset release
 
-            - name: Test
-              shell: bash
-              run: |
-                ctest --preset release
+    - name: Test
+      run: ctest --preset release
