@@ -1,17 +1,12 @@
 #!/usr/bin/env node
+process.env.NODE_NO_WARNINGS = '1';
 
-import { exec, spawnSync } from 'child_process';
+import { spawn, spawnSync } from 'child_process';
 import { program } from 'commander';
 import path from 'path';
 
 function Run(command, args = []) {
-    const result = spawnSync(command, args, { stdio: 'inherit', shell: true });
-    if (result.error) {
-        process.exit(1);
-    }
-    if (result.status !== 0) {
-        process.exit(result.status);
-    }
+    spawnSync(command, args, { stdio: 'inherit', shell: true });
 }
 
 program

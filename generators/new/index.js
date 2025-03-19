@@ -1,11 +1,15 @@
 import Generator from 'yeoman-generator';
 import os from 'os';
 import fs from 'fs';
+import ora from 'ora';
 
 export default class extends Generator {
 
     constructor(args, opts) {
         super(args, opts);
+
+        this.env.options.silent = true;
+        this.env.adapter.log = () => {};
 
         this.option('app', {
             type: String,
@@ -22,9 +26,13 @@ export default class extends Generator {
     writing() {
 
         if (this.options.app && !this.options.lib) {
+            const spinner = ora('[creating new application]').start();
             this._createApp(this.options.app);
+            spinner.succeed('Done!');
         } else if (this.options.lib && !this.options.app) {
+            const spinner = ora('[creating new library]').start();
             this._createLib(this.options.lib);
+            spinner.succeed('Done!');
         } else {
             this.log('Specify one of --app {app-name} or --lib {lib-name} (not both)')
         }

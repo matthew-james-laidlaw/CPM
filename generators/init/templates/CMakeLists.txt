@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.29.3)
 
-project(TEMPLATE LANGUAGES CXX)
+project(<%= projectName %> LANGUAGES CXX)
 
 include(GoogleTest)
 enable_testing()

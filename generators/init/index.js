@@ -1,60 +1,71 @@
 import Generator from 'yeoman-generator';
+import ora from 'ora';
 
 export default class extends Generator {
 
+    _expectSnakeCase(name, err_msg) {
+        const snakeCaseRegex = /^[a-z]+(?:_[a-z]+)*$/;
+        if (!snakeCaseRegex.test(name)) {
+            this.env.error(err_msg);
+        }
+    }
+
     constructor(args, opts) {
         super(args, opts);
+
+        this.spinner = ora('[initializing file system]').start();
+
+        this.env.options.silent = true;
+        this.env.adapter.log = () => {};
 
         this.argument('name', {
             type: String,
             required: true
         });
 
-        this.option('app', {
-            type: Boolean,
-            description: 'Generate a new application'
-        });
-
-        this.option('lib', {
-            type: Boolean,
-            description: 'Generate a new library'
-        });
-
+        this._expectSnakeCase(this.options.name, 'project name must be snake case');
     }
 
-    writing() {
-        this._initFileStructure();
+    async writing() {
+        await this._initFileStructure();
     }
     
-    install() {        
-        this._initGit();
-        this._initCmake();
+    async install() {
+        this.spinner.text = '[initializing git]';
+        await this._initGit();
+
+        this.spinner.text = '[initializing cmake]';
+        await this._initCmake();
+        this.spinner.succeed('Done!');
     }
 
-    _initFileStructure() {
+    async _initFileStructure() {
         const files = [
             { from: '.github',           to: '.github'           },
-            { from: 'apps',              to: 'apps'              },
             { from: 'cmake',             to: 'cmake'             },
+            { from: 'apps',              to: 'apps'              },
             { from: 'extern',            to: 'extern'            },
             { from: 'libs',              to: 'libs'              },
             { from: '.gitignore',        to: '.gitignore'        },
-            { from: 'CMakeLists.txt',    to: 'CMakeLists.txt'    },
             { from: 'CMakePresets.json', to: 'CMakePresets.json' },
+            
+            { from: 'CMakeLists.txt', to: 'CMakeLists.txt', options: { projectName: this.options.name.toUpperCase() } },
         ];   
-        this._applyTemplates(files);
+        await this._applyTemplates(files);
     }
 
-    _initGit() {
-        this.spawnSync('git', ['init']);
-        this.spawnSync('git', ['submodule', 'add', 'https://github.com/google/googletest.git', 'extern/googletest']);
+    async _initGit() {
+        await this.spawn('git', ['init', '--initial-branch', 'main'], { stdio: 'ignore', shell: true });
+        await this.spawn('git', ['submodule', 'add', 'https://github.com/google/googletest.git', 'extern/googletest'], { stdio: 'ignore', shell: true });
+        await this.spawn('git', ['add', '-A'], { stdio: 'ignore', shell: true });
+        await this.spawn('git', ['commit', '-m', '\"initial commit\"'], { stdio: 'ignore', shell: true });
     }
 
-    _initCmake() {
-        this.spawnSync('cmake', ['--preset', 'default']);
+    async _initCmake() {
+        await this.spawn('cmake', ['--preset', 'default'], { stdio: 'ignore', cwd: this.destinationRoot(), env: process.env, shell: true });
     }
 
-    _applyTemplates(files) {
+    async _applyTemplates(files) {
         files.forEach((file) => {
             if (file.options) {
                 this.fs.copyTpl(
@@ -69,6 +80,7 @@ export default class extends Generator {
                 );
             }
         });
+        return Promise.resolve();
     }
 
 };

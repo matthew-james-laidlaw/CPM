@@ -37,3 +37,20 @@ npm test --release
 - Add support for conan or vcpkg
 - Add out-of-the-box support for IDE's like VSCode or Fleet
 - Allow CPM to download and store a registery of clang cross-compilers
+
+## Test Plan
+- init succeeds
+- init 2 times in a row fails gracefully after 2nd
+- init with invalid name either fails, automatically transforms name to something usable in cmake, or prompts user for a name until succeeds
+- new app succeeds
+- new app with same name 2 times in a row fails gracefully after 2nd
+- new app with invalid name either fails, automatically transforms name to something usable in cmake, or prompts user for a name until succeeds
+- new lib succeeds
+- new lib with same name 2 times in a row fails gracefully after 2nd
+- new lib with invalid name either fails, automatically transforms name to something usable in cmake, or prompts user for a name until succeeds
+- build succeeds
+- build release succeeds
+- build with compiler error reports compiler error in a usable manner
+- test before build builds
+- test after build just runs tests
+- test before build w/ failing build does not run tests
